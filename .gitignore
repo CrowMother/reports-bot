@@ -3,3 +3,6 @@
 tokens.json
 *.db
 trades.txt
+.venv
+venv
+*.json
