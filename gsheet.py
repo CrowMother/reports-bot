@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import logging
+from Bot_App.config.secrets import get_date
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -46,7 +47,7 @@ def copy_headers(worksheet, location):
         worksheet.update(
             location,
             [[
-                "=A1", "=B1", "=C1", "=D1", "=E1"
+                "=A1", "=B1", "=C1", "=D1", "=E1", "=F1", "=G1", "=H1", "=I1"
             ]],
             value_input_option="USER_ENTERED"
         )
@@ -64,7 +65,8 @@ def format_data_row(closing_order, open_order):
         close_price = extract_execution_price(closing_order)
 
         return [
-            str(symbol),
+            str(get_date()),
+            str(symbol.split(" ")[0]),
             str(date),
             f"{strike} {put_call}",
             str(open_price),

@@ -22,6 +22,7 @@ ISREPORTGEN = False
 def loop_work():
     logging.info("Running loop_work()")
     client = SchwabClient(SCHWAB_APP_KEY, SCHWAB_APP_SECRET)
+    initialize_db(DATABASE_PATH, drop_table= False)
     initialize_open_positions_table(DATABASE_PATH)
 
     # Fetch Schwab orders
@@ -39,7 +40,6 @@ def loop_work():
 def main():
     global ISREPORTGEN
     logging.info("Starting Schwab GSheet Tracker...")
-    initialize_db("orders.db", drop_table= False)
 
     while True:
         if LOOP_TYPE == "DEBUG":

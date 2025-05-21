@@ -40,7 +40,7 @@ def send_to_gsheet(all_orders, db_path="data/orders.db"):
 
             if order_id not in posted_ids:
                 row = get_next_empty_row(sheet, 2)
-                insert_data(sheet, f"B{row}", [row_data])
+                insert_data(sheet, f"A{row}", [row_data])
                 _mark_posted(order_id, db_path)
 
     except Exception as e:
