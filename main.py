@@ -16,6 +16,7 @@ DATABASE_PATH = get_secret("DATABASE_PATH", "config/.env", "data/orders.db")
 TIME_DELTA = int(get_secret("TIME_DELTA", "config/.env", 24))
 SCHWAB_APP_KEY = get_secret("SCHWAB_APP_KEY", "config/.env")
 SCHWAB_APP_SECRET = get_secret("SCHWAB_APP_SECRET", "config/.env")
+LOOP_FREQUENCY = int(get_secret("LOOP_FREQUENCY", "config/.env", 60))
 
 ISREPORTGEN = False
 
@@ -54,7 +55,7 @@ def main():
             else:
                 ISREPORTGEN = False
 
-        time.sleep(60)
+        time.sleep(LOOP_FREQUENCY)
 
 if __name__ == "__main__":
     main()
