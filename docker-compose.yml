@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  schwab-gsheet-tracker:
+    build: .
+    container_name: schwab_gsheet
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
