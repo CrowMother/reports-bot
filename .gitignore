@@ -5,5 +5,5 @@ tokens.json
 trades.txt
 .venv
 venv
-*.json
+weekly-reports-bot.json
 *.pyc
