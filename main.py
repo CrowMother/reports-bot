@@ -20,9 +20,8 @@ LOOP_FREQUENCY = int(get_secret("LOOP_FREQUENCY", "config/.env", 60))
 
 ISREPORTGEN = False
 
-def loop_work():
+def loop_work(client):
     logging.info("Running loop_work()")
-    client = SchwabClient(SCHWAB_APP_KEY, SCHWAB_APP_SECRET)
     initialize_db(DATABASE_PATH, drop_table= False)
     initialize_open_positions_table(DATABASE_PATH)
 
@@ -40,17 +39,18 @@ def loop_work():
 
 def main():
     global ISREPORTGEN
+    client = SchwabClient(SCHWAB_APP_KEY, SCHWAB_APP_SECRET)
     logging.info("Starting Schwab GSheet Tracker...")
 
     while True:
         if LOOP_TYPE == "DEBUG":
-            loop_work()
+            loop_work(client)
             break
 
         elif LOOP_TYPE == "DAILY":
             if check_time_of_day(HOUR_OF_DAY):
                 if not ISREPORTGEN:
-                    loop_work()
+                    loop_work(client)
                     ISREPORTGEN = True
             else:
                 ISREPORTGEN = False
