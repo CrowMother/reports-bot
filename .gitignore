@@ -7,5 +7,6 @@ trades.txt
 venv
 weekly-reports-bot.json
 *.pyc
+config/.env
+src/
 __pycache__/
-
