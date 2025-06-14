@@ -18,3 +18,6 @@
    ```bash
    pytest
    ```
+## Configuration
+Copy `.env.example` to `config/.env` and adjust the values to match your environment. See `config/config.md` for a detailed description of each key.
+
