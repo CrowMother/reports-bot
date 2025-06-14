@@ -29,7 +29,11 @@ def store_orders(orders, db_path="orders.db"):
         try:
             from Bot_App.core.position_tracker import initialize_open_positions_table
 
+
+            # Ensure the open_positions table exists for each order
+
             # At the start of the function (once per run)
+
             initialize_open_positions_table(db_path)
 
             cursor.execute("""
